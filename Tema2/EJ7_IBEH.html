@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<script>
+      let pregunta = Number(prompt("¿Qué nota?", ));
+
+       let respuesta= (pregunta === 0) ? "NO PRESENTADO": 
+       (pregunta >0 && pregunta<5) ? "SUSPENSO":
+       (pregunta >=5 && pregunta<6) ? "APROBADO":
+       (pregunta >=6 && pregunta<7) ? "BIEN":
+       (pregunta >=7 && pregunta<9) ? "NOTABLE":
+       (pregunta >=9 && pregunta <=10) ? "SOBRESALIENTE": "ERROR";
+    alert(respuesta);
+
+// No se utiliza el isNAN, al entrar dentro del ERROR.
+
+</script>
+<body>
+    
+</body>
+
+</script>
+</html>
