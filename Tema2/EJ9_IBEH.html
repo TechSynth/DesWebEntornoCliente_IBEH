@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ9</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //let valor1;
+    let valor1 = prompt("Valor introducido por el usuario");
+   
+    const valor2 = "Invitado";
+    //const valor2 = undefined;
+
+    alert(valor1 ?? valor2 ?? "Anonymous"); 
+// Imprime cadena vacia si tiene prompt. 
+// Imprime invitado si no se declara la variable valor1. 
+// Si no se declara valor 1 y no es undefined valor2 sale anonymous
+
+    alert(valor1 || valor2 || "Anonymous"); 
+//cadena vacia + "invitado" imprime invitado. 
+//Cadena vacia + null imprime anonymous
+
+    </script>
+
+</html>
