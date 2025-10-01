@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ10</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    const pwdCorrecta = 1234;
+    let intento = 1
+
+    alert("Bienvenid@ a tu cajero automático!!!")
+
+    while (intento <= 3) {
+        let escaner = +prompt("¿Cuál es la contraseña?");
+
+        if (escaner === pwdCorrecta) {
+            alert("Has entrado"); break;
+        }
+        else {
+            alert("Error!!! Intentalo otra vez, ha sido tu intento Nº" + intento);
+            intento++
+        }
+
+    }
+    if (intento >= 3) alert("Lo sentimos pero tus crendenciales no son válidas, inténtalo más tarde o ponte en contacto con atención al cliente al número 999888777 \n \nSentimos las molestias!!!");
+</script>
+
+</html>

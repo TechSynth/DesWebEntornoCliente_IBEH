@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJ10</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+
+    const multiplo = 3
+
+    let continuar = true
+    for (let i = 1; i <= 10; i++) {
+
+        continuar = confirm("¿Quieres ver la tabla del " + i + "?")
+        if (!continuar) break;
+
+        document.write("<H1> La tabla del " + i + "</h1>")
+        for (let j = 1; j <= 10; j++) {
+            let resultado = i * j
+            document.write("<br> <p>" + i + "x" + j + "=" + resultado)
+
+
+            if (resultado % multiplo === 0) break;
+
+        }
+
+    }
+
+</script>
+
+</html>

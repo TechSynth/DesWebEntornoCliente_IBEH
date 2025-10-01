@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJ13</title>
+  </head>
+
+  <body>
+    
+  </body>
+  <script>
+    let nombre = prompt("¿Cuál es tu nombre?");
+    let genero;
+
+    function showMessage(nombre) {
+      if (nombre === null || nombre === "") {
+        nombre = "No has intoducido ningun nombre";
+        alert(nombre);
+      } else {
+        genero = prompt("Cuál es tu género?");
+        let saludo = checkGenre(genero);
+        alert(saludo + " " + nombre + "!!");
+      }
+    }
+    function checkGenre(genero) {
+      if (genero === null || genero === "") {
+        return "Bievenid@";
+      } else if (genero === "Masculino") {
+        return "Bienvenido";
+      } else if (genero === "Femenino") {
+        return "Bienvenida";
+      } else {
+        return "Bievenid@";
+      }
+    }
+    showMessage(nombre);
+  </script>
+</html>
