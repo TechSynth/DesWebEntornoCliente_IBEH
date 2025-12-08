@@ -41,4 +41,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
     });
+
+    let btnEmpezar = document.getElementById("empezar");
+    let contenedor = document.getElementById("contenedorPrincipal");
+
+    btnEmpezar.addEventListener("click", () => {
+        btnEmpezar.style.display = "none";
+        //Se crean botones por cada uno de los sospechosos
+        sospechosos.forEach(nombre => {
+            let btn = document.createElement("button");
+            btn.innerText = nombre;
+            //Añado el boton
+            contenedor.appendChild(btn);
+        });
+    });
 });
