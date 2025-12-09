@@ -42,17 +42,36 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     });
 
-    let btnEmpezar = document.getElementById("empezar");
+    let btnEmpezar = document.getElementById("btnEmpezar");
     let contenedor = document.getElementById("contenedorPrincipal");
-
+    let interrogatorio = document.getElementById("interrogatorio");
+    let nombreSel = document.getElementById("nombreSeleccionado");
+    let declaracion = document.getElementById("declaracionPista");
+    let sospechosoActual=null;
+    
+    interrogatorio.style.display = "none";
+   
     btnEmpezar.addEventListener("click", () => {
         btnEmpezar.style.display = "none";
         //Se crean botones por cada uno de los sospechosos
         sospechosos.forEach(nombre => {
+
             let btn = document.createElement("button");
             btn.innerText = nombre;
+
             //Añado el boton
+            btn.addEventListener("click", () => mostrarPista(nombre));
             contenedor.appendChild(btn);
+
         });
     });
+
+    function mostrarPista(nombre) {
+        let persona = datosInvestigacion[nombre];
+        sospechosoActual=persona;
+
+        interrogatorio.style.display = "block";
+        nombreSel.innerText = "Interrogando a: " + persona.nombre;
+        declaracion.innerText = "Declaración: \"" + persona.declarar() + "\"";
+    }
 });

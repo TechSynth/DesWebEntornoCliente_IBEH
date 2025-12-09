@@ -13,17 +13,28 @@
 
 <body>
 
-    <body>
-        <h1 id="titulo">Bienvenid@ al juego</h1>
-        <p id="descripcion">Alguien a matado a <span id="victima"> <!-- Se insertará con innerText--></span></p>
-        <p id="texto"> Debes descubrir quien es el posible sospechoso atendiendo a sus declaraciones</p>
+    <h1 id="titulo">Bienvenid@ al juego</h1>
+    <p id="descripcion">Alguien a matado a <span id="victima"> <!-- Se insertará con innerText--></span></p>
+    <p id="texto"> Debes descubrir quien es el posible sospechoso atendiendo a sus declaraciones</p>
 
-        <button id="empezar">Comenzar</button>
+    <button id="btnEmpezar">Comenzar</button>
 
-        <div id="contenedorPrincipal">
+    <div id="contenedorPrincipal">
 
-        </div>
-    </body>
+    </div>
+
+    <div id="interrogatorio">
+        <h3 id="nombreSeleccionado">Interrogando a: </h3>
+        <p id="declaracionPista"></p>
+        <hr>
+        <p>¿Estás seguro de que esta es la persona culpable?</p>
+
+        <button id="btnAcusar">ACUSAR FORMALMENTE</button>
+    </div>
+
+    <div id="mensajeResultado">
+        <p id="textoResultado"></p>
+    </div>
 </body>
 
 </html>
