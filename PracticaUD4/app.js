@@ -40,7 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         };
+        
     });
+
+    
+
 
     let btnEmpezar = document.getElementById("btnEmpezar");
     let contenedor = document.getElementById("contenedorPrincipal");
@@ -76,13 +80,31 @@ document.addEventListener("DOMContentLoaded", function () {
     function mostrarPista(nombre) {
         let persona = datosInvestigacion[nombre];
         sospechosoActual = persona;
+                        
+        //Mostrar por consola algún Symbol incluyendo su descripción.
+        console.log((sospechosoActual[ROL_SECRETO]))
+
+        
 
         interrogatorio.style.display = "block";
         nombreSel.innerText = "Interrogando a: " + persona.nombre;
         declaracion.innerText = "Declaración: \"" + persona.declarar() + "\"";
     }
+    
+    function mostrarObjetos(obj) {
+        for (let key in obj) {
+            if (typeof obj[key] == "object") {
+                console.log( `Propiedad "${key}"s es un objeto con los siguientes valores:`);
+                for (let subKey in obj[key]) {
+                    console.log(`${subKey}:${obj[key][subKey]}`);
+                }
+            } else if (typeof obj[key] != "function"){
+                console.log(`<br>${key}: ${obj[key]}`);
+            }
+        }
+    }
 
-    btnAcusar.addEventListener("click", () => {
+btnAcusar.addEventListener("click", () => {
         interrogatorio.style.display = "none";
         mensaje.style.display = "block";
 
@@ -91,6 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
             //Se clona el objeto y se añade la propiedad acusado
             let investigacion = Object.assign({}, sospechosoActual);
             investigacion.acusado = true;
+
+            //se muestra OBJETO CLONADO EN CONSOLA.
+            mostrarObjetos(investigacion)
+
 
             if (sospechosoActual[ROL_SECRETO] === "CULPABLE") {
                 textoResultado.innerText = "\nParece sospechoso.... Lo mejor será hacerle más preguntas a " + sospechosoActual.nombre + ".\n";
@@ -103,4 +129,5 @@ document.addEventListener("DOMContentLoaded", function () {
             };
         }
     });
+    
 });
