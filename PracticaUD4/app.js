@@ -47,12 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
     let interrogatorio = document.getElementById("interrogatorio");
     let nombreSel = document.getElementById("nombreSeleccionado");
     let declaracion = document.getElementById("declaracionPista");
-    let sospechosoActual=null;
-    
+    let btnAcusar = document.getElementById("btnAcusar");
+    let mensaje = document.getElementById("mensajeResultado");
+    let textoResultado = document.getElementById("textoResultado");
+    let btnSiguiente = document.getElementById("btnSiguiente");
+    let sospechosoActual = null;
+
     interrogatorio.style.display = "none";
-   
+    btnSiguiente.style.display = "none";
+
     btnEmpezar.addEventListener("click", () => {
         btnEmpezar.style.display = "none";
+        //Se barajan los sospechosos porque salia siempre en primera posición el sospechoso
+        sospechosos.sort(() => Math.random() - 0.5);
         //Se crean botones por cada uno de los sospechosos
         sospechosos.forEach(nombre => {
 
@@ -68,10 +75,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarPista(nombre) {
         let persona = datosInvestigacion[nombre];
-        sospechosoActual=persona;
+        sospechosoActual = persona;
 
         interrogatorio.style.display = "block";
         nombreSel.innerText = "Interrogando a: " + persona.nombre;
         declaracion.innerText = "Declaración: \"" + persona.declarar() + "\"";
     }
+
+    btnAcusar.addEventListener("click", () => {
+        interrogatorio.style.display = "none";
+        mensaje.style.display = "block";
+
+        if (sospechosoActual) {
+
+            //Se clona el objeto y se añade la propiedad acusado
+            let investigacion = Object.assign({}, sospechosoActual);
+            investigacion.acusado = true;
+
+            if (sospechosoActual[ROL_SECRETO] === "CULPABLE") {
+                textoResultado.innerText = "\nParece sospechoso.... Lo mejor será hacerle más preguntas a " + sospechosoActual.nombre + ".\n";
+                if (btnSiguiente) {
+                    btnSiguiente.style.display = "block";
+                };
+            }
+            else {
+                textoResultado.innerText = "\nParece que " + sospechosoActual.nombre + " no es el asesino. Seguimos investigando.";
+            };
+        }
+    });
 });
