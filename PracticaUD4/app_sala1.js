@@ -120,8 +120,13 @@ btnAcusar.addEventListener("click", () => {
 
             if (sospechosoActual[ROL_SECRETO] === "CULPABLE") {
                 textoResultado.innerText = "\nParece sospechoso.... Lo mejor será hacerle más preguntas a " + sospechosoActual.nombre + ".\n";
+                
+                    document.cookies = sospechosoActual.nombre;
+                    document.cookies= victima;
                 if (btnSiguiente) {
+                    
                     btnSiguiente.style.display = "block";
+                    
                 };
             }
             else {
