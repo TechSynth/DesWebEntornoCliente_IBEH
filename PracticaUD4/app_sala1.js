@@ -104,9 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-btnAcusar.addEventListener("click", () => {
-        interrogatorio.style.display = "none";
-        mensaje.style.display = "block";
+    btnAcusar.addEventListener("click", () => {
+            interrogatorio.style.display = "none";
+            mensaje.style.display = "block";
+
+    
 
         if (sospechosoActual) {
 
@@ -121,8 +123,10 @@ btnAcusar.addEventListener("click", () => {
             if (sospechosoActual[ROL_SECRETO] === "CULPABLE") {
                 textoResultado.innerText = "\nParece sospechoso.... Lo mejor será hacerle más preguntas a " + sospechosoActual.nombre + ".\n";
                 
-                    document.cookies = sospechosoActual.nombre;
-                    document.cookies= victima;
+                //Se guardan las cookies de la víctima y el sospechoso actual, para usarlas en la siguiente sala
+                document.cookie = victima + "=Victima";
+                document.cookie = sospechosoActual.nombre + "=Sospechoso";
+
                 if (btnSiguiente) {
                     
                     btnSiguiente.style.display = "block";
