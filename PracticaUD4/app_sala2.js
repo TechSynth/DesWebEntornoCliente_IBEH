@@ -6,20 +6,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let victima = datosInvestigacion.find(item => item.startsWith("Victima")).split("=")[1];
     let sospechoso = datosInvestigacion.find(item => item.startsWith("Sospechoso")).split("=")[1];
     let noAsesinos = datosInvestigacion.find(item => item.startsWith("NoAsesino")).split("=")[1].split(",");
-    let noAsesinoRandom=noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
+    let noAsesinoRandom = noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
 
     let output = document.getElementById("output");
     let outputPista = document.getElementById("pistas");
 
-    output.innerText += "Victima: " + victima;
-    output.innerText += "Sospechoso: " + sospechoso;
-    output.innerText += "NoAsesinos: " + noAsesinos;
+    output.innerText += "\nVictima: " + victima;
+    output.innerText += "\nSospechoso: " + sospechoso;
+    output.innerText += "\nNoAsesinos: " + noAsesinos;
 
     //contador de cuestiones hechas
     let cuestionesHechas = 0;
     let cuestionario = new Map();
 
-    cuestionario.set("¿Cuál era tu relación con la víctima?", [
+    cuestionario.set("¿Cuál era tu relación con " + victima + "?", [
         "Éramos buenos amigos desde la infancia.",
         "Solo éramos conocidos, no teníamos mucha relación.",
         "No nos llevábamos bien, teníamos varios desacuerdos.",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pistas.add(respuesta);
         cuestionesHechas++;
-        
+
         //pruebas de output
         outputPista.innerText += "\n\nPregunta: " + pregunta;
         outputPista.innerText += "\nRespuesta: " + respuesta;
@@ -58,5 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let preguntas = Array.from(cuestionario.keys());
 
     preguntas.forEach(pregunta => {hacerPregunta(pregunta)});
+
+    //se convierten las pistas en array para mostrarlas
+    let pistasArray = [...pistas];
+
+    outputPista.innerText += "\n\nPistas recopiladas: ";
+    pistasArray.forEach(pista => {outputPista.innerText += "\n" + pista});
 
 });
