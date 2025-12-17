@@ -124,8 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 textoResultado.innerText = "\nParece sospechoso.... Lo mejor será hacerle más preguntas a " + sospechosoActual.nombre + ".\n";
                 
                 //Se guardan las cookies de la víctima y el sospechoso actual, para usarlas en la siguiente sala
-                document.cookie = victima + "=Victima";
-                document.cookie = sospechosoActual.nombre + "=Sospechoso";
+                document.cookie = "Victima=" + victima;
+                document.cookie = "Sospechoso=" + sospechosoActual.nombre;
+                document.cookie = "NoAsesino="+noAsesino;
 
                 if (btnSiguiente) {
                     

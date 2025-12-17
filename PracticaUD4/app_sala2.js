@@ -1,16 +1,19 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    //se sacan los datos de la cookie.
+    //se sacan los datos de la cookie. Se añade el de NoAsesino desde la sala1.js 
     let datosInvestigacion = document.cookie.split("; ");
-    let victima = datosInvestigacion[0];
-    let sospechoso = datosInvestigacion[1];
+    let victima = datosInvestigacion.find(item => item.startsWith("Victima")).split("=")[1];
+    let sospechoso = datosInvestigacion.find(item => item.startsWith("Sospechoso")).split("=")[1];
+    let noAsesinos = datosInvestigacion.find(item => item.startsWith("NoAsesino")).split("=")[1].split(",");
+    let noAsesinoRandom=noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
 
     let output = document.getElementById("output");
     let outputPista = document.getElementById("pistas");
 
     output.innerText += "Victima: " + victima;
     output.innerText += "Sospechoso: " + sospechoso;
+    output.innerText += "NoAsesinos: " + noAsesinos;
 
     //contador de cuestiones hechas
     let cuestionesHechas = 0;
@@ -29,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ]);
 
     cuestionario.set("¿De quíen sospechas?", [
-        "Creo que podría ser Javier, lo he visto actuar de manera extraña.",
-        "No estoy seguro, pero Ainhoa parecía nerviosa anoche.",
+        "Creo que podría ser " + noAsesinoRandom + ", actuaba de manera extraña.",
+        "No lo sé aún, pero " + noAsesinoRandom + " estaba de los nervios anoche.",
         "No tengo sospechas concretas, todos parecían normales.",
     ]);
 
@@ -54,8 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //se sacan las preguntas del map como array
     let preguntas = Array.from(cuestionario.keys());
 
-    hacerPregunta(preguntas[0]);
-    hacerPregunta(preguntas[1]);
-    hacerPregunta(preguntas[2]);
+    preguntas.forEach(pregunta => {hacerPregunta(pregunta)});
 
 });
