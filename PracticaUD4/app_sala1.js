@@ -130,6 +130,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (btnSiguiente) {
                     
                     btnSiguiente.style.display = "block";
+                    btnSiguiente.addEventListener("click", () => {
+                        window.location.href = "sala2.html";
+                    });
                     
                 };
             }
