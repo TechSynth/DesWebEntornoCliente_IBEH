@@ -1,19 +1,34 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    //se sacan los datos de la cookie. Se añade el de NoAsesino desde la sala1.js 
+    //se sacan los datos de la cookie. Se añade el de NoAsesino desde la sala1.js
     let datosInvestigacion = document.cookie.split("; ");
-    let victima = datosInvestigacion.find(item => item.startsWith("Victima")).split("=")[1];
-    let sospechoso = datosInvestigacion.find(item => item.startsWith("Sospechoso")).split("=")[1];
-    let noAsesinos = datosInvestigacion.find(item => item.startsWith("NoAsesino")).split("=")[1].split(",");
-    let noAsesinoRandom = noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
+    let victima = datosInvestigacion
+        .find((item) => item.startsWith("Victima"))
+        .split("=")[1];
+    let sospechoso = datosInvestigacion
+        .find((item) => item.startsWith("Sospechoso"))
+        .split("=")[1];
+    let noAsesinos = datosInvestigacion
+        .find((item) => item.startsWith("NoAsesino"))
+        .split("=")[1]
+        .split(",");
+    let noAsesinoRandom =
+        noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
 
-    let output = document.getElementById("output");
-    let outputPista = document.getElementById("pistas");
+    let textoInicial = document.getElementById("textoInicial");
+    let btnPregunta1 = document.getElementById("primeraPregunta");
+    let btnPregunta2 = document.getElementById("segundaPregunta");
+    let btnPregunta3 = document.getElementById("terceraPregunta");
+    let outputPregunta = document.getElementById("pregunta");
+    let outputRespuesta = document.getElementById("respuesta");
+    let outputPistas = document.getElementById("pistas");
 
-    output.innerText += "\nVictima: " + victima;
-    output.innerText += "\nSospechoso: " + sospechoso;
-    output.innerText += "\nNoAsesinos: " + noAsesinos;
+    textoInicial.innerText +=
+        "\nTenemos unas preguntas adicionales que nos gustaría que nos respondieses por favor " +
+        victima;
+    //output.innerText += "\nSospechoso: " + sospechoso;
+    //output.innerText += "\nNoAsesinos: " + noAsesinos;
 
     //contador de cuestiones hechas
     let cuestionesHechas = 0;
@@ -40,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let pistas = new Set();
 
     function hacerPregunta(pregunta) {
-
         let respuestas = cuestionario.get(pregunta);
 
         //respuesta aleatoria entre las posibles del map
@@ -50,19 +64,46 @@ document.addEventListener("DOMContentLoaded", function () {
         cuestionesHechas++;
 
         //pruebas de output
-        outputPista.innerText += "\n\nPregunta: " + pregunta;
-        outputPista.innerText += "\nRespuesta: " + respuesta;
+        outputPregunta.innerText = "\n\nPregunta: " + pregunta;
+        outputRespuesta.innerText = "\nRespuesta: " + respuesta;
+
+        outputPistas.innerText = "\n\nPistas recopiladas: ";
+        mostrarPistas();
+
+        //display none de texto de preguntas una vez se han hecho las 3
+        if (cuestionesHechas === 3) {
+            outputPregunta.style.display = "none";
+            outputRespuesta.style.display = "none";
+        }
     }
 
     //se sacan las preguntas del map como array
     let preguntas = Array.from(cuestionario.keys());
 
-    preguntas.forEach(pregunta => {hacerPregunta(pregunta)});
+    //preguntas.forEach(pregunta => {hacerPregunta(pregunta)});
+
+    btnPregunta1.addEventListener("click", () => {
+        btnPregunta1.style.display = "none";
+        hacerPregunta(preguntas[0]);
+    });
+
+    btnPregunta2.addEventListener("click", () => {
+        btnPregunta2.style.display = "none";
+        hacerPregunta(preguntas[1]);
+    });
+
+    btnPregunta3.addEventListener("click", () => {
+        btnPregunta3.style.display = "none";
+        hacerPregunta(preguntas[2]);
+    });
 
     //se convierten las pistas en array para mostrarlas
-    let pistasArray = [...pistas];
+    function mostrarPistas() {
+        let pistasArray = [...pistas];
 
-    outputPista.innerText += "\n\nPistas recopiladas: ";
-    pistasArray.forEach(pista => {outputPista.innerText += "\n" + pista});
+        pistasArray.forEach((pista) => {
+            outputPistas.innerText += "\n" + pista;
+        });
+    };
 
 });
