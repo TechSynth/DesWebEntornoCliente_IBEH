@@ -16,7 +16,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let outputRespuesta = document.getElementById("respuesta");
     let outputPistas = document.getElementById("pistas");
 
-    textoInicial.innerText +="\nTenemos unas preguntas adicionales que nos gustaría que nos respondieses por favor " +victima;
+    let contenedorGif = document.getElementById("contenedorGif");
+    let gifsPersonajes = {
+        "Teresa": "personajes/teresa.gif",
+        "Carmen": "personajes/carmen.gif",
+        "Javier": "personajes/javier.gif",
+        "Joaquin": "personajes/joaquin.gif",
+        "Ainhoa": "personajes/ainhoa.gif",
+        "Alma": "personajes/alma.gif"
+    };
+
+    textoInicial.innerText +="\nTenemos unas preguntas adicionales que nos gustaría que nos respondieses por favor " +sospechoso;
     //output.innerText += "\nSospechoso: " + sospechoso;
     //output.innerText += "\nNoAsesinos: " + noAsesinos;
 
@@ -44,6 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let pistas = new Set();
 
+    function mostrarGif() {
+        contenedorGif.innerHTML = ""; //sino volverian a añadir los gifs cada vez que se hace una pregunta
+        
+        let img = document.createElement("img");
+        img.src = gifsPersonajes[sospechoso];
+        img.style.maxWidth = "300px";
+        img.style.display = "block";
+        img.style.margin = "20px auto";
+        
+        contenedorGif.appendChild(img);
+    }
+
+
     function hacerPregunta(pregunta) {
         let respuestas = cuestionario.get(pregunta);
 
@@ -52,18 +75,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pistas.add(respuesta);
         cuestionesHechas++;
+        mostrarGif();
 
         //pruebas de output
         outputPregunta.innerText = "\n\nPregunta: " + pregunta;
         outputRespuesta.innerText = "\nRespuesta: " + respuesta;
 
-        outputPistas.innerText = "\n\nPistas recopiladas: ";
-        mostrarPistas();
+        
 
         //display none de texto de preguntas una vez se han hecho las 3
         if (cuestionesHechas === 3) {
             outputPregunta.style.display = "none";
             outputRespuesta.style.display = "none";
+
+            outputPistas.innerText = "\n\nPistas recopiladas: ";
+            mostrarPistas();
+
+
             mostrarBoton();
 
         }
@@ -89,7 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
         hacerPregunta(preguntas[2]);
     });
 
-    //se convierten las pistas en array para mostrarlas
+    //se convierten las pistas en array para mostrarlas // se borro antes por error de conflicto
+    
     function mostrarPistas() {
         let pistasArray = [...pistas];
 
