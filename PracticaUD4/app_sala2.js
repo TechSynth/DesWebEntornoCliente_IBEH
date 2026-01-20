@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
             outputPistas.innerText += "\n" + pista;
         });
     };
-
+    
+    //función para mostrar el botón de continuar a la siguiente sala, no se hace commit del cambio debido a un conflicto previo
     function mostrarBoton(){
         let btnContinuar = document.createElement("button");
         outputPistas.innerText += "\n\n"
