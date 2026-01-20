@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (this[ROL_SECRETO] === "CULPABLE") {
                     return "Yo... MmMM ... estuve en el baño toda la noche. ¡Lo juro!";
                 } else {
-                    return "Estuve en la biblioteca leyendo un libro. Pobre" + victima + "...";
+                    return "Estuve en la biblioteca leyendo un libro. Pobre " + victima + "...";
                 }
             }
         };

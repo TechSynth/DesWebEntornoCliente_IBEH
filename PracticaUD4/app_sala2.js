@@ -3,18 +3,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     //se sacan los datos de la cookie. Se añade el de NoAsesino desde la sala1.js
     let datosInvestigacion = document.cookie.split("; ");
-    let victima = datosInvestigacion
-        .find((item) => item.startsWith("Victima"))
-        .split("=")[1];
-    let sospechoso = datosInvestigacion
-        .find((item) => item.startsWith("Sospechoso"))
-        .split("=")[1];
-    let noAsesinos = datosInvestigacion
-        .find((item) => item.startsWith("NoAsesino"))
-        .split("=")[1]
-        .split(",");
-    let noAsesinoRandom =
-        noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
+    let victima = datosInvestigacion.find((item) => item.startsWith("Victima")).split("=")[1];
+    let sospechoso = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
+    let noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
+    let noAsesinoRandom = noAsesinos[Math.floor(Math.random() * noAsesinos.length)];
 
     let textoInicial = document.getElementById("textoInicial");
     let btnPregunta1 = document.getElementById("primeraPregunta");
@@ -24,9 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let outputRespuesta = document.getElementById("respuesta");
     let outputPistas = document.getElementById("pistas");
 
-    textoInicial.innerText +=
-        "\nTenemos unas preguntas adicionales que nos gustaría que nos respondieses por favor " +
-        victima;
+    textoInicial.innerText +="\nTenemos unas preguntas adicionales que nos gustaría que nos respondieses por favor " +victima;
     //output.innerText += "\nSospechoso: " + sospechoso;
     //output.innerText += "\nNoAsesinos: " + noAsesinos;
 
@@ -119,6 +109,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         outputPistas.appendChild(btnContinuar);
     }
+
+
+
+    //SEGUNDA ENTREGA PARCIAL, propiedades con desestructuración
+
+    let [pregunta1,respuesta2,respuesta3]=preguntas
+    console.log(pregunta1)
+    console.log(respuesta2)
+    console.log(respuesta3)
+
+    //recorrer los valores del map cuestionario
+    for (let opciones of cuestionario.values()) {
+        console.log(opciones);
+    };
+
+
+    //array sin modificación
+
+    console.log("Array sin modificación: " +document.cookie)
+    console.log("Array con modificación, seleccionan solo NO asesinos: "+noAsesinos)
 
 
 });
