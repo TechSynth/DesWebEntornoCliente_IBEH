@@ -7,8 +7,15 @@ body {
     text-align: center;
 }
 
-h1 {
+h1,.resaltar {
     color: #dacc12;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.resaltar {
+    font-size: 2em;
+    margin-top: 0.2em;
     margin-bottom: 0.5em;
 }
 
