@@ -74,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (cuestionesHechas === 3) {
             outputPregunta.style.display = "none";
             outputRespuesta.style.display = "none";
+            mostrarBoton();
+
         }
     }
 
@@ -105,5 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
             outputPistas.innerText += "\n" + pista;
         });
     };
+
+    function mostrarBoton(){
+        let btnContinuar = document.createElement("button");
+        outputPistas.innerText += "\n\n"
+        btnContinuar.innerText = "Continuar";
+        btnContinuar.id = "btnContinuar";
+        
+        btnContinuar.addEventListener("click", () => {
+            window.location.href = "sala3.html";
+        });
+        outputPistas.appendChild(btnContinuar);
+    }
+
 
 });
