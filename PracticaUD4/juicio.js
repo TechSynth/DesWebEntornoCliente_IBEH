@@ -1,4 +1,4 @@
-export class Jucio{
+export class Juicio{
     #veredicto //privado
     #sospechosos
 
