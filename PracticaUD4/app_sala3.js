@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     todosSospechosos.forEach(nombre => { //por cada sospechoso se crea un objeto Sospechoso y se añade al juicio
         let sospechoso = new Sospechoso(
             nombre,
-            `personajes/${nombre.toLowerCase()}.gif`,//para el gif
+            `personajes/${nombre.toLowerCase()}.gif`,//image, para el gif
             coartadas[nombre],
             nombre === asesino
         );
@@ -36,4 +36,80 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("Sospechosos cargados:", juicio.getSospechosos().length); //deben salir5
 
+    let contenidoPrincipal = document.getElementById("contenidoPrincipal");
+      
+    function mostrarSeleccionSospechosos() {
+        contenidoPrincipal.innerHTML = "";
+        
+        let titulo = document.createElement("h2");
+        titulo.innerText = "Selecciona a quién acusar:";
+        contenidoPrincipal.appendChild(titulo);
+        
+        juicio.getSospechosos().forEach(sospechoso => { //botón por cada sospechoso
+            let btn = document.createElement("button");
+            btn.innerText = sospechoso.nombre;
+            btn.addEventListener("click", () => mostrarConfirmacion(sospechoso));
+            contenidoPrincipal.appendChild(btn);
+        });
+    }
+
+    mostrarSeleccionSospechosos();
+
+    
+    function mostrarConfirmacion(sospechoso) {
+        contenidoPrincipal.innerHTML = "";//igual que sala 2,limpia el contenido
+        
+        let titulo = document.createElement("h2");
+        titulo.innerText = `¿Acusar a ${sospechoso.nombre}?`;
+        contenidoPrincipal.appendChild(titulo);
+        
+        let img = document.createElement("img"); //misma lógica que sala2.js
+        img.src = sospechoso.imagen; //accede a imagen del sospechoso
+        img.style.maxWidth = "300px";
+        img.style.margin = "20px auto";
+        img.style.display = "block";
+        contenidoPrincipal.appendChild(img);
+        
+        let defensa = document.createElement("p");
+        defensa.innerText = sospechoso.defender(); //llama al met defender del obj sospechoso
+        defensa.style.textAlign = "center";
+        contenidoPrincipal.appendChild(defensa);
+        
+        let btnSi = document.createElement("button");
+        btnSi.innerText = "Sí, acusar";
+        btnSi.addEventListener("click", () => mostrarVeredicto(sospechoso)); //si se confirma, llama a mostrarVeredicto
+        contenidoPrincipal.appendChild(btnSi);
+        
+        let btnNo = document.createElement("button");
+        btnNo.innerText = "Volver";
+        btnNo.addEventListener("click", mostrarSeleccionSospechosos); //sino vuelve a la selección
+        contenidoPrincipal.appendChild(btnNo);
+    }
+    
+    function mostrarVeredicto(sospechoso) {
+        let esAsesino = sospechoso.nombre === asesino;
+        let mensaje = Juicio.determinarVeredicto(esAsesino, sospechoso.nombre, asesino); //llama al met estático para generar el mensaje
+        
+        contenidoPrincipal.innerHTML = "";//limpia el contenido
+        
+        let titulo = document.createElement("h2");
+        titulo.innerText = esAsesino ? "¡CASO RESUELTO!" : "¡ERROR!";
+        titulo.style.color = esAsesino ? "green" : "red";
+        contenidoPrincipal.appendChild(titulo);
+        
+        let texto = document.createElement("p");
+        texto.innerText = mensaje; //mensaje generado si ha acertado o no
+        contenidoPrincipal.appendChild(texto);
+        
+        let btnReiniciar = document.createElement("button");
+        btnReiniciar.innerText = "Jugar de nuevo";
+
+        btnReiniciar.addEventListener("click", () => {//Borra todas las cookies del juego
+            document.cookie = "Victima=; max-age=0";
+            document.cookie = "Sospechoso=; max-age=0";
+            document.cookie = "NoAsesino=; max-age=0";
+            window.location.href = "index.html";
+        });
+        contenidoPrincipal.appendChild(btnReiniciar); //añade el botón de reiniciar
+    }
 });
