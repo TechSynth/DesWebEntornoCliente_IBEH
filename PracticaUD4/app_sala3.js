@@ -5,13 +5,26 @@ import { Sospechoso } from "./sospechoso.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    //se sacan los datos de la cookie
-    let datosInvestigacion = document.cookie.split("; ");
-    let victima = datosInvestigacion.find((item) => item.startsWith("Victima")).split("=")[1];
-    let asesino = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
-    let noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
+    try {  // control de errores, cargar y procesar las cookies
+        //se sacan los datos de la cookie
+        let datosInvestigacion = document.cookie.split("; ");
+        let victima = datosInvestigacion.find((item) => item.startsWith("Victima")).split("=")[1];
+        let asesino = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
+        let noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
 
-    let todosSospechosos = [asesino, ...noAsesinos]; //array con todos los sospechosos
+        let todosSospechosos = [asesino, ...noAsesinos]; //array con todos los sospechosos
+
+        if (!victima || !asesino || !noAsesinos) {
+            throw new Error("Datos de investigación incompletos");
+        }
+
+        } catch (error) { //si algo falla, hace alert del error y lleva al inicio
+
+        console.error("Error al cargar datos:", error.message);
+        alert("No se encontraron datos de la investigación. Vuelve a la sala 1.");
+        window.location.href = "index.html";
+        return;
+    }
 
     let coartadas = {
         "Teresa": "Estuve en la biblioteca toda la noche.",
