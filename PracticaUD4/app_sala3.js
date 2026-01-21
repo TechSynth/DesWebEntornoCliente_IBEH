@@ -5,6 +5,8 @@ import { Sospechoso } from "./sospechoso.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    let victima, asesino, noAsesinos, todosSospechosos; //variables para los datos de la cookie
+
     try {  // control de errores, cargar y procesar las cookies
         //se sacan los datos de la cookie
         let datosInvestigacion = document.cookie.split("; ");
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let asesino = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
         let noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
 
-        let todosSospechosos = [asesino, ...noAsesinos]; //array con todos los sospechosos
+        todosSospechosos = [asesino, ...noAsesinos]; //array con todos los sospechosos
 
         if (!victima || !asesino || !noAsesinos) {
             throw new Error("Datos de investigación incompletos");
