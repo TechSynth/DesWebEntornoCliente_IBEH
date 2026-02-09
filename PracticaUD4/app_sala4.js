@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let info = document.getElementById("info");
     let codigo = document.getElementById("codigo");
     let mensaje = document.getElementById("mensaje");
+    let jugando = true
 
     let img = document.createElement("img");
     img.src = `personajes/${asesino}.gif`;
@@ -37,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     zona.addEventListener("mouseover", () => {
-    info.textContent = `¡Coge a ${asesino} antes de que escape!`;
-});
+        info.textContent = `¡Coge a ${asesino} antes de que escape!`;
+    });
 
     intervalo = setInterval(moverAleatoriamente, velocidad);
 
@@ -53,6 +54,39 @@ document.addEventListener("DOMContentLoaded", function () {
         let y = Math.floor(e.clientY - rect.top);
         mensaje.textContent = `Tu posición: (${x}, ${y})`;
     });
-
+    
+    objetivo.addEventListener("click", (e) => {
+        e.stopPropagation();
+        clearInterval(intervalo);
+        jugando = false;
+        
+        let eventoCaptura = new CustomEvent("asesinoCapturaExitosa", {
+            detail: {
+                nombre: asesino,
+                timestamp: new Date().toLocaleTimeString(),
+                detective: codigo.value || "Anónimo"
+            },
+            bubbles: true
+        });
+        
+        objetivo.dispatchEvent(eventoCaptura);
+    });
+    
+    document.addEventListener("asesinoCapturaExitosa", (e) => {
+        let contenidoPrincipal = document.getElementById("contenidoPrincipal");
+        contenidoPrincipal.innerHTML = `
+        <h1>¡CAPTURADO!</h1>
+        <p>${e.detail.nombre} arrestado a las ${e.detail.timestamp}</p>
+        <p>Detective: ${e.detail.detective}</p>
+        <button id="menu">Volver al menú</button>
+        `;
+        
+        document.getElementById("menu").addEventListener("click", () => {
+            document.cookie = "Victima=; max-age=0";
+            document.cookie = "Sospechoso=; max-age=0";
+            document.cookie = "NoAsesino=; max-age=0";
+            window.location.href = "index.html";
+        });
+    });
     moverAleatoriamente();
 });
