@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     try {  // control de errores, cargar y procesar las cookies
         //se sacan los datos de la cookie
         let datosInvestigacion = document.cookie.split("; ");
-        let victima = datosInvestigacion.find((item) => item.startsWith("Victima")).split("=")[1];
-        let asesino = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
-        let noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
+        victima = datosInvestigacion.find((item) => item.startsWith("Victima")).split("=")[1];
+        asesino = datosInvestigacion.find((item) => item.startsWith("Sospechoso")).split("=")[1];
+        noAsesinos = datosInvestigacion.find((item) => item.startsWith("NoAsesino")).split("=")[1].split(",");
 
         todosSospechosos = [asesino, ...noAsesinos]; //array con todos los sospechosos
 
@@ -115,6 +115,15 @@ document.addEventListener("DOMContentLoaded", function () {
         let texto = document.createElement("p");
         texto.innerText = mensaje; //mensaje generado si ha acertado o no
         contenidoPrincipal.appendChild(texto);
+
+        if (esAsesino) {
+            let btnPerseguir = document.createElement("button");
+            btnPerseguir.innerText = "Perseguir al asesino";
+            btnPerseguir.addEventListener("click", () => {
+                window.location.href = "sala4.html";
+            });
+            contenidoPrincipal.appendChild(btnPerseguir);
+        }
         
         let btnReiniciar = document.createElement("button");
         btnReiniciar.innerText = "Jugar de nuevo";
