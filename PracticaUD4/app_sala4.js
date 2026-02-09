@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let info = document.getElementById("info");
     let codigo = document.getElementById("codigo");
     let mensaje = document.getElementById("mensaje");
-    let jugando = true
+    let jugando = true;
 
     let img = document.createElement("img");
     img.src = `personajes/${asesino}.gif`;
@@ -41,12 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
         info.textContent = `¡Coge a ${asesino} antes de que escape!`;
     });
 
+    textoInicial.textContent ="Pulsa Z para ralentizar"
+
     intervalo = setInterval(moverAleatoriamente, velocidad);
 
     setTimeout(() => {
         clearInterval(intervalo);
         info.textContent = `¡Parece que ${asesino} se ha cansado! ¡APROVECHA!`;
-    }, 5000);
+    }, 10000);
 
     zona.addEventListener("mousemove", (e) => {
         let rect = zona.getBoundingClientRect();
@@ -54,24 +56,24 @@ document.addEventListener("DOMContentLoaded", function () {
         let y = Math.floor(e.clientY - rect.top);
         mensaje.textContent = `Tu posición: (${x}, ${y})`;
     });
-    
+
     objetivo.addEventListener("click", (e) => {
         e.stopPropagation();
         clearInterval(intervalo);
         jugando = false;
-        
+
         let eventoCaptura = new CustomEvent("asesinoCapturaExitosa", {
             detail: {
                 nombre: asesino,
                 timestamp: new Date().toLocaleTimeString(),
-                detective: codigo.value || "Anónimo"
+                detective: codigo.value || "Anónimo",
             },
-            bubbles: true
+            bubbles: true,
         });
-        
+
         objetivo.dispatchEvent(eventoCaptura);
     });
-    
+
     document.addEventListener("asesinoCapturaExitosa", (e) => {
         let contenidoPrincipal = document.getElementById("contenidoPrincipal");
         contenidoPrincipal.innerHTML = `
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p>Detective: ${e.detail.detective}</p>
         <button id="menu">Volver al menú</button>
         `;
-        
+
         document.getElementById("menu").addEventListener("click", () => {
             document.cookie = "Victima=; max-age=0";
             document.cookie = "Sospechoso=; max-age=0";
@@ -88,5 +90,23 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "index.html";
         });
     });
+
+    codigo.addEventListener("keydown", (e) => {
+        if (e.key >= "0" && e.key <= "9") {
+            e.preventDefault();
+            mensaje.textContent = "Solo letras permitidas";
+        }
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "z" || e.key === "Z") {
+            e.preventDefault();
+            clearInterval(intervalo);
+            velocidad = 500;
+            intervalo = setInterval(moverAleatoriamente, velocidad);
+            info.textContent = "¡Tecla Z! El asesino va más lento";
+        }
+    });
+
     moverAleatoriamente();
 });
