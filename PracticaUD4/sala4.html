@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala 4 - Persecución</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <div id="introduccion">
         <p class="resaltar">¡PERSIGUE AL ASESINO!</p>
     </div>
 
-    <div id="contenidoPrincipal"> </div>
-    
+    <div id="contenidoPrincipal">
+        <p id="textoInicial"></p>
+        <p id="info">El asesino está huyendo...</p>
+        <div id="zona">
+            <div id="objetivo"></div>
+        </div>
+        <input type="text" id="codigo" placeholder="Escribe tu nombre" maxlength="20">
+        <p id="mensaje"></p>
+    </div>
+
+
+
     <script type="module" src="app_sala4.js"></script>
 </body>
+
 </html>
