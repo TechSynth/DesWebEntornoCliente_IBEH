@@ -51,3 +51,10 @@
     cursor: grab;
     transition: transform 0.2s;
 }
+
+#nombrePersonaje {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
