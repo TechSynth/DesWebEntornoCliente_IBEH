@@ -52,9 +52,16 @@
     transition: transform 0.2s;
 }
 
-#nombrePersonaje {
+#formGuardar input {
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+}
+
+#formGuardar button {
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
 }

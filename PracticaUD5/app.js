@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const armario = document.querySelector('.armario');
     const prendas = document.querySelectorAll('.prenda');
     const inputNombre = document.getElementById('nombrePersonaje');
+    const formGuardar = document.getElementById('formGuardar');
 
     let prendaSeleccionada = null;
 
@@ -65,14 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 prenda.style.left = event.pageX - prenda.offsetWidth / 2 + "px";
                 prenda.style.top = event.pageY - prenda.offsetHeight / 2 + "px";
-                
+
                 // Para propagacion, si se hace click en la prenda, no se propaga al body
                 prenda.addEventListener("click", (e) => {
                     e.stopPropagation(); // Evita que el click se propague al body
                     console.log(`Click en prenda colocada ${prenda.id} - propagación detenida`);
                 });
             };
-            
+
         };
 
         prenda.ondragstart = function () { // Para que no se duplique la prenda al arrastrar
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     });
 
-    // Validación de carácteres alfanuméricos 
+    // Validación de carácteres alfanuméricos por teclado
     inputNombre.addEventListener("keypress", (e) => {
         const caracter = e.key; // Que tecla se ha apretado
 
@@ -89,12 +90,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (esAlfanumerico) {
             console.log(`Has introducido el caracter "${caracter}"`);
-            
+
         }
         else {
             e.preventDefault(); // Evita que se escriba el caracter
             console.log("Solo letras y números");
         }
     });
-    
+
+    formGuardar.addEventListener("submit", (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+
+        const nombre = inputNombre.value.trim(); // Recoge lo escrito input y quita espacios
+
+        if (!/^[a-zA-Z0-9]{3,}$/.test(nombre)) { // Misma validación de antes pero con un mínimo de 3.
+            alert("Mínimo 3 caracteres alfanuméricos"); // Si no la cumple, muestra error.
+            return;
+        }
+
+        const outfitGuardado = new CustomEvent("outfitGuardado", { // Evento personalizado
+            detail: { nombrePersonaje: nombre } // Se pasará el detail con el nombre guardado del submit
+        });
+
+        document.dispatchEvent(outfitGuardado); // Lanza el event personalizado
+    });
+
+    document.addEventListener("outfitGuardado", (e) => { // Una vez lanzado saldrá la información
+        console.log(`Outfit guardado: ${e.detail.nombrePersonaje}`);
+        alert(`Outfit guardado: ${e.detail.nombrePersonaje}`);
+    });
+
+
 });
