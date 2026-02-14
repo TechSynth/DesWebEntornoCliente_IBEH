@@ -120,5 +120,24 @@ document.addEventListener("DOMContentLoaded", () => {
         alert(`Outfit guardado: ${e.detail.nombrePersonaje}`);
     });
 
+    window.addEventListener("resize", () => { // Cuando se redimensiona la ventana, muestra el nuevo tamaño
+        console.log(`Ventana redimensionada: ${window.innerWidth}x${window.innerHeight}px`);
+    });
+
+    document.body.addEventListener("dblclick", (e) => { // Doble click para devolver la prenda al armario
+    if (e.target.classList.contains("prenda")) { // Si el dbclick es a una prenda
+        const prenda = e.target;
+        
+        // Restablecer estilos
+        prenda.style.position = ""; // Quita el absolute
+        prenda.style.left = ""; // Quita posición horizontal
+        prenda.style.top = ""; // Quita posición vertical
+        
+        // Devolver al armario
+        armario.querySelector(".opciones-ropa").append(prenda);
+        
+        console.log(`Prenda ${prenda.id} devuelta al armario`);
+    }
+});
 
 });
