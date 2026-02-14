@@ -2,21 +2,22 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.contenedorBody{
+.contenedorBody {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
+    gap: 10px;
 }
 
-.bloqueTexto{
+.bloqueTexto {
     flex: 100%;
     padding: 20px;
     text-align: center;
 }
 
 .bloqueMoñeco {
-    flex: 50%;
+    flex: 10;
     height: 60vh;
     max-width: 600px;
     max-height: 600px;
@@ -24,3 +25,25 @@
     border-color: #dada;
     background-color: #dadada;
 }
+
+#contenedorPersonaje {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bloqueAdicional {
+    flex: 1;
+    gap: 4px;
+    grid-template-columns: 1fr 1fr; 
+    align-content: start;
+    display: grid;
+    padding: 5px;
+    max-width: 150px; 
+    min-width: 150px;
+    background-color: #412700;
+
+}    
+
