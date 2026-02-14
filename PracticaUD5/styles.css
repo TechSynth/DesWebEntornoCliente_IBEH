@@ -1,0 +1,26 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.contenedorBody{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.bloqueTexto{
+    flex: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.bloqueMoñeco {
+    flex: 50%;
+    height: 60vh;
+    max-width: 600px;
+    max-height: 600px;
+    border-style: solid;
+    border-color: #dada;
+    background-color: #dadada;
+}
