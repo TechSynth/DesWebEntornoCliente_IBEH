@@ -47,3 +47,7 @@
 
 }    
 
+.prenda:hover {
+    cursor: grab;
+    transition: transform 0.2s;
+}
