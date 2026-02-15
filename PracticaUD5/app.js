@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const prendas = document.querySelectorAll('.prenda');
     const inputNombre = document.getElementById('nombrePersonaje');
     const formGuardar = document.getElementById('formGuardar');
+    const cambioPersonajeBtn = document.querySelector('.cambioPersonaje');
+    const personaje = document.getElementById('personaje');
 
     let prendaSeleccionada = null;
 
@@ -125,19 +127,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.body.addEventListener("dblclick", (e) => { // Doble click para devolver la prenda al armario
-    if (e.target.classList.contains("prenda")) { // Si el dbclick es a una prenda
-        const prenda = e.target;
-        
-        // Restablecer estilos
-        prenda.style.position = ""; // Quita el absolute
-        prenda.style.left = ""; // Quita posición horizontal
-        prenda.style.top = ""; // Quita posición vertical
-        
-        // Devolver al armario
-        armario.querySelector(".opciones-ropa").append(prenda);
-        
-        console.log(`Prenda ${prenda.id} devuelta al armario`);
-    }
-});
+        if (e.target.classList.contains("prenda")) { // Si el dbclick es a una prenda
+            const prenda = e.target;
 
-});
+            // Restablecer estilos
+            prenda.style.position = ""; // Quita el absolute
+            prenda.style.left = ""; // Quita posición horizontal
+            prenda.style.top = ""; // Quita posición vertical
+
+            // Devolver al armario
+            armario.querySelector(".opciones-ropa").append(prenda);
+
+            console.log(`Prenda ${prenda.id} devuelta al armario`);
+        }
+    });
+
+    let personajeActual=1; 
+
+    cambioPersonajeBtn.addEventListener("click", () => { // Botón para cambiar el moñeco, devuelve todas las prendas al armario
+        prendas.forEach(prenda => {
+            // Restablecer estilos
+            prenda.style.position = ""; // Quita el absolute
+            prenda.style.left = ""; // Quita posición horizontal
+            prenda.style.top = ""; // Quita posición vertical
+
+            // Devolver al armario
+            armario.querySelector(".opciones-ropa").append(prenda);
+
+        });
+
+        personajeActual++;
+    
+        if(personajeActual > 4){
+            personajeActual = 1;
+        }
+    
+        personaje.src = `img/Personaje${personajeActual}.png`; // Cambia la imagen del personaje
+
+    }); 
+});     
