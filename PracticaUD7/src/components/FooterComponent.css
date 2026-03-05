@@ -1,0 +1,46 @@
+.footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+
+.footer-logo {
+    height: 32px;
+    width: auto;
+    margin-bottom: 1rem;
+}
+
+.footer-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.footer-form input {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.footer-form button {
+    background: #ff2d78;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+}
+
+.footer-gracias {
+    color: #c8f135;
+    margin-bottom: 1rem;
+}
+
+.footer-copy {
+    color: #666;
+    font-size: 0.8rem;
+}
