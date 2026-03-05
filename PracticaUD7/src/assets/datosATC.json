@@ -1,0 +1,22 @@
+[
+  { "pregunta": "¿Qué es Fisofi y para qué sirve?",
+  "respuesta": "Fisofi es una plataforma todo-en-uno para estudios de danza, yoga y fitness. Gestiona reservas, pagos, CRM y marketing desde un único lugar." },
+  { "pregunta": "¿Puedo gestionar las reservas de mis alumnos?",
+  "respuesta": "Sí, tus alumnos pueden reservar clases online 24/7 y tú las ves en tiempo real desde tu panel de control." },
+  { "pregunta": "¿Cómo funciona el sistema de pagos?",
+  "respuesta": "Fisofi integra pasarelas de pago seguras. Tus alumnos pagan online y tú recibes el dinero directamente en tu cuenta." },
+  { "pregunta": "¿Tiene app móvil para mis clientes?",
+  "respuesta": "Sí, tus alumnos pueden reservar clases, ver su historial y recibir notificaciones desde la app móvil de Fisofi." },
+  { "pregunta": "¿Puedo enviar emails de marketing a mis alumnos?",
+  "respuesta": "Claro. Fisofi incluye email marketing integrado. Crea campañas, segmenta tu audiencia y consulta estadísticas sin salir de la plataforma." },
+  { "pregunta": "¿Qué pasa si un alumno no paga su mensualidad?",
+  "respuesta": "Fisofi te avisa automáticamente y envía recordatorios al alumno. Puedes bloquear su acceso a reservas hasta que regularice el pago." },
+  { "pregunta": "¿Puedo ver el historial de cada alumno?",
+  "respuesta": "Sí, el CRM de Fisofi muestra el perfil completo de cada alumno: clases, pagos, bonos activos y notas personales." },
+  { "pregunta": "¿Es difícil de configurar?",
+  "respuesta": "No, Fisofi está pensado para propietarios de estudio sin conocimientos técnicos. Nuestro equipo te acompaña en el onboarding." },
+  { "pregunta": "¿Puedo probar Fisofi antes de contratar?",
+  "respuesta": "Sí, ofrecemos prueba gratuita y demo personalizada para que veas cómo Fisofi se adapta a tu estudio." },
+  { "pregunta": "¿Cuánto cuesta Fisofi al mes?",
+  "respuesta": "Tenemos diferentes planes según el tamaño de tu estudio. Solicita una demo y te asesoramos sobre el plan ideal para ti." }
+]
