@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import './Home.css'
+import { useState } from "react"
+import "./Home.css"
 
 function Home() {
     const [chatAbierto, setChatAbierto] = useState(false) //función para actualizar el valor
