@@ -1,0 +1,31 @@
+.mensaje {
+    max-width: 75%;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.mensaje-usuario {
+    background: #eeeeee;
+    color: #111;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.mensaje-asistente {
+    background: #e8e8ff;
+    color: #111;
+    align-self: flex-start;
+    text-align: left;
+
+}
+
+.mensaje-etiqueta {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #888;
+    margin-top: 0.2rem;
+}

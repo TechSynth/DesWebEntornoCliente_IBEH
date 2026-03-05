@@ -1,0 +1,49 @@
+.opciones {
+    border-top: 1px solid #eee;
+    padding: 0.8rem;
+    background: #fff;
+}
+
+.opciones-titulo {
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 0.5rem;
+}
+
+.opciones-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.opcion-btn {
+    border: 1px solid #4062E2 !important;
+    background: #fff !important;
+    color: #4062E2 !important;
+    border-radius: 8px !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.75rem !important;
+    cursor: pointer;
+    text-align: left;
+}
+
+.opcion-btn:hover {
+    background: #4062E2;
+    color: #fff;
+}
+
+.opcion-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.opcion-mas {
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.78rem;
+    cursor: pointer;
+}

@@ -1,53 +1,50 @@
-.pagina {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: white;
-  padding: 20px;
-  max-width: 50vw;
-  margin: 0 auto;
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.titulo {
-  font-size: 50px;
-  text-align: center;
-  color: #4062E2;
-  margin-bottom: 24px;
+.chat-header {
+    background: #4062E2;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
-.fila {
-  display: flex;
-  margin: 8px 0;
+.chat-nombre {
+    font-weight: bold;
+    font-size: 0.75rem;
+    flex: 1;
 }
 
-.izquierda {
-  justify-content: flex-start;
+.chat-estado {
+    display: none;
 }
 
-.derecha {
-  justify-content: flex-end;
+.chat-reset {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin-right: 1.5rem;
 }
 
-.burbuja {
-  padding: 10px 14px;
-  border-radius: 15px;
-  max-width: 60%;
-  font-size: 14px;
-  line-height: 1.5;
+.chat-mensajes {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    min-height: 120px;
 }
 
-.usuario {
-  background-color: #4062E2;
-  color: white;
-}
-
-.asistente {
-  background-color: #CED828;
-  color: black;
-}
-
-.etiqueta {
-  display: block;
-  font-size: 10px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  opacity: 0.7;
+.chat-escribiendo {
+    font-size: 0.8rem;
+    color: #999;
 }
