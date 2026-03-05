@@ -1,0 +1,37 @@
+.home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: #EBEEFF;
+}
+
+.home h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.home span {
+    font-size: 2rem;
+    color: #ff2d78;
+}
+
+.home p {
+    color: #555;
+    margin-bottom: 2rem;
+    max-width: 380px;
+}
+
+.home button {
+    background: #ff2d78;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}

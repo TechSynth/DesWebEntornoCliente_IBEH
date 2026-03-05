@@ -1,4 +1,12 @@
-import Chat from "./components/ChatComponent.jsx";
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home.jsx'
 
-function App() { return <Chat />; }
-export default App;
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home />} />
+        </Routes>
+    )
+}
+
+export default App
