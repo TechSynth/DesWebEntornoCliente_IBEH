@@ -23,17 +23,12 @@ function Chat() {
     const handleSeleccionar = (item) => {
         setIniciado(true)
         setEscribiendo(true)
-        setMensajes((prev) => [...prev, { tipo: "usuario", texto: ite m.pregunta }])
+        setMensajes((prev) => [...prev, { tipo: "usuario", texto: item.pregunta }])
 
         setTimeout(() => {
             setMensajes((prev) => [...prev, { tipo: "asistente", texto: item.respuesta }])
             setEscribiendo(false)
         }, 800)
-    }
-
-    const handleReset = () => {
-        setIniciado(false)
-        setMensajes([{ tipo: "asistente", texto: "¡Claro! ¿En qué más puedo ayudarte?" }])
     }
 
     return (
